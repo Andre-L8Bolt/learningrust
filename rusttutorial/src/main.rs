@@ -6,22 +6,22 @@ use rand::Rng; //use random numbers
 fn main() {
     loop {
         println!("\n\nPlease input a corresponding number: ");
-        println!("0: Quit\n1: Run Test\n2: Guessing game\n3: Fizzbuzz (1-1000)\n");
+        println!("0: Quit\n1: Guessing game\n2: Fizzbuzz (1-1000)\n3: Simple test\n");
 
         let mut selection = String::new();
         io::stdin().read_line(&mut selection).expect("Failed to read input"); //sets reference to selection to inputted value
         match selection.trim().parse::<u8>() { //matches selection (with removed whitespaces and made into u8 int) with below
             Ok(0) => break, //quits
-            Ok(1) => testing(), //runs testing
-            Ok(2) => guessgame(),
-            Ok(3) => fizzbuzz(1, 1000), //may want to multi-thread //passed as params
+            Ok(1) => guessgame(),
+            Ok(2) => fizzbuzz(1, 1000), //may want to multi-thread //passed as params
+            Ok(3) => simpletesting(), //runs testing //mainly chapter 3
             Ok(_) => continue, //if other val re-does loop
             Err(_) => continue, //same for err
         };
     }
 }
 
-fn testing() {
+fn simpletesting() {
     println!("Hello, world!");
     let i32num: i16 = -255; //creates new var as signed 16-bit int
     let unsignedarch: usize = 4_000_000_000; //creates new unsigned architecture-max int //can use _'s as separator
