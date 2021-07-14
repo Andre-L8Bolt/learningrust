@@ -3,7 +3,7 @@ use std::io; //use io from the standard libraries
 fn main() {
     loop{
         println!("\n\nPlease input a corresponding number: ");
-        println!("0: Quit\n1: Run Test\n2: Guessing game\n");
+        println!("0: Quit\n1: Run Test\n2: Guessing game\n3: Fizzbuzz (1-1000)\n");
 
         let mut selection = String::new();
         io::stdin().read_line(&mut selection).expect("Failed to read input"); //sets reference to selection to inputted value
@@ -11,6 +11,7 @@ fn main() {
             Ok(0) => break, //quits
             Ok(1) => testing(), //runs testing
             Ok(2) => guessgame(),
+            Ok(3) => fizzbuzz(1, 1000), //may want to multi-thread //passed as params
             Ok(_) => continue, //if other val re-does loop
             Err(_) => continue, //same for err
         };
@@ -35,4 +36,24 @@ fn testing() {
 
 fn guessgame() { //new function called guessgame (from the tutorial)
     //code
+}
+
+fn fizzbuzz(f: i32, t: i32) { //hybrid of two main fizzbuzz approaches (single threaded) //inputs signed 32 bit ints
+    println!("\n\n");
+    for i in f..=t { //for i in from (inc) to to (inc)
+        if i % 3 != 0 && i % 5 != 0 { //most common case (53 in 100) //put at top
+            println!("{}", i);
+            continue;
+        }
+        //skips allocating space on heap for most common case
+        let mut res = String::new(); //creates string
+        //may be slower due to strings being on the heap, not stack
+        if i % 3 == 0 {
+            res = String::from("fizz");
+        }
+        if i % 5 == 0 {
+            res = res + "buzz";
+        }
+        println!("{}", res); //prints the result
+    }
 }
