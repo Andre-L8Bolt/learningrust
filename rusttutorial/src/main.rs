@@ -38,6 +38,7 @@ fn simpletesting() {
     println!("aint is {}", aint); //print's and println's act in a similar way to how they do in java
     println!("stringlit is: {}", strlit);
     println!("a mutable var was 8, but now is: {}", mutable);
+    //add slice type (delete once done)
 }
 
 fn ownershipandstructstesting() {
@@ -87,3 +88,17 @@ fn fizzbuzz(f: i32, t: i32) { //hybrid of two main fizzbuzz approaches (single t
         println!("{}", res); //prints the result
     }
 }
+
+
+
+
+//INT OVERFLOW:
+//Relying on integer overflow’s wrapping behavior is considered an error.
+//
+//To explicitly handle the possibility of overflow, you can use these families of methods that the standard library provides on primitive numeric types:
+//
+//    Wrap in all modes with the wrapping_* methods, such as wrapping_add
+//    Return the None value if there is overflow with the checked_* methods
+//    Return the value and a boolean indicating whether there was overflow with the overflowing_* methods
+//    Saturate at the value's minimum or maximum values with saturating_* methods
+
