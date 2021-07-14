@@ -1,7 +1,10 @@
 use std::io; //use io from the standard libraries
+use colored::*; //use for terminal colors
+use std::cmp::Ordering; //use for checking order
+use rand::Rng; //use random numbers
 
 fn main() {
-    loop{
+    loop {
         println!("\n\nPlease input a corresponding number: ");
         println!("0: Quit\n1: Run Test\n2: Guessing game\n3: Fizzbuzz (1-1000)\n");
 
@@ -25,17 +28,38 @@ fn testing() {
     let float8: f32 = 3.5; //creates new single-precision float
     let tru: bool = true; //creates new boolean with value true
     let aint = 5; //creates new int (compiler can often determine type at compile-time
+    let strlit = "I am a rustation"; //creates a new string literal (on stack instead of heap)
     let mut mutable = 8; //variables are not mutable by default (adding mut changes that)
     mutable = mutable + 1;
     println!("i32num is {} and unsignedarch is {}", i32num, unsignedarch);
     print!("A float is {}", float8); //as you can see println adds a newline after the printed string
     println!("a bool is {}", tru);
     println!("aint is {}", aint); //print's and println's act in a similar way to how they do in java
+    println!("stringlit is: {}", strlit);
     println!("a mutable var was 8, but now is: {}", mutable);
 }
 
 fn guessgame() { //new function called guessgame (from the tutorial)
-    //code
+    println!("\nGuess a number from 1-25 (inclusive):\n");
+    let num = rand::thread_rng().gen_range(1..26);
+    let mut tries = 0;
+    loop {
+        let mut guess = String::new();
+        tries = tries + 1;
+        io::stdin().read_line(&mut guess).expect("Failed to read input"); //same as in selection loop
+        let guess: u8 = match guess.trim().parse() { //shadows the var guess
+            Ok(num) => num,
+            Err(_) => continue,
+        };
+        match guess.cmp(&num) { //match statement like above
+            Ordering::Less => println!("{}", "Higher!".yellow().italic()),
+            Ordering::Greater => println!("{}", "Lower!".cyan().italic()),
+            Ordering::Equal => {
+                println!("{} with {} tries.", "Nice, you win".green(), tries.to_string().blue().bold().italic()); //adds color (needs string)
+                break;
+            },
+        };
+    }
 }
 
 fn fizzbuzz(f: i32, t: i32) { //hybrid of two main fizzbuzz approaches (single threaded) //inputs signed 32 bit ints
