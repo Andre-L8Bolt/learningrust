@@ -6,7 +6,7 @@ use rand::Rng; //use random numbers
 fn main() {
     loop {
         println!("\n\nPlease input a corresponding number: ");
-        println!("0: Quit\n1: Guessing game\n2: Fizzbuzz (1-1000)\n3: Simple test\n4: Ownership & ch6 testing\n");
+        println!("0: Quit\n1: Guessing game\n2: Fizzbuzz (1-1000)\n3: Simple test\n4: Ownership & structs testing\n");
 
         let mut selection = String::new();
         io::stdin().read_line(&mut selection).expect("Failed to read input"); //sets reference to selection to inputted value
@@ -15,7 +15,7 @@ fn main() {
             Ok(1) => guessgame(),
             Ok(2) => fizzbuzz(1, 1000), //may want to multi-thread //passed as params
             Ok(3) => simpletesting(), //runs testing //mainly chapter 3
-            Ok(4) => ownershipandch6testing(),
+            Ok(4) => ownershipandstructstesting(),
             Ok(_) => continue, //if other val re-does loop
             Err(_) => continue, //same for err
         };
@@ -40,7 +40,7 @@ fn simpletesting() {
     println!("a mutable var was 8, but now is: {}", mutable);
 }
 
-fn ownershipandch6testing() {
+fn ownershipandstructstesting() {
     println!("To implement")
     //implement
 }
