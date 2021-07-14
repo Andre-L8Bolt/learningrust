@@ -1,6 +1,20 @@
+use std::io; //use io from the standard libraries
+
 fn main() {
-    testing();
-    guessgame()
+    loop{
+        println!("\n\nPlease input a corresponding number: ");
+        println!("0: Quit\n1: Run Test\n2: Guessing game\n");
+
+        let mut selectionin = String::new();
+        io::stdin().read_line(&mut selectionin).expect("Failed to read input"); //sets reference to selection to inputted value
+        match selectionin.trim().parse::<u8>() { //matches selectionin (with removed whitespace and made into u8 int) with below
+            Ok(0) => break, //quits
+            Ok(1) => testing(), //runs testing
+            Ok(2) => guessgame(),
+            Ok(_) => continue, //if other val re-does loop
+            Err(_) => continue, //sane for err
+        };
+    }
 }
 
 fn testing() {
@@ -10,10 +24,13 @@ fn testing() {
     let float8: f32 = 3.5; //creates new single-precision float
     let tru: bool = true; //creates new boolean with value true
     let aint = 5; //creates new int (compiler can often determine type at compile-time
+    let mut mutable = 8; //variables are not mutable by default (adding mut changes that)
+    mutable = mutable + 1;
     println!("i32num is {} and unsignedarch is {}", i32num, unsignedarch);
     print!("A float is {}", float8); //as you can see println adds a newline after the printed string
     println!("a bool is {}", tru);
     println!("aint is {}", aint); //print's and println's act in a similar way to how they do in java
+    println!("a mutable var was 8, but now is: {}", mutable);
 }
 
 fn guessgame() { //new function called guessgame (from the tutorial)
