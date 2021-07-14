@@ -5,14 +5,14 @@ fn main() {
         println!("\n\nPlease input a corresponding number: ");
         println!("0: Quit\n1: Run Test\n2: Guessing game\n");
 
-        let mut selectionin = String::new();
-        io::stdin().read_line(&mut selectionin).expect("Failed to read input"); //sets reference to selection to inputted value
-        match selectionin.trim().parse::<u8>() { //matches selectionin (with removed whitespace and made into u8 int) with below
+        let mut selection = String::new();
+        io::stdin().read_line(&mut selection).expect("Failed to read input"); //sets reference to selection to inputted value
+        match selection.trim().parse::<u8>() { //matches selection (with removed whitespaces and made into u8 int) with below
             Ok(0) => break, //quits
             Ok(1) => testing(), //runs testing
             Ok(2) => guessgame(),
             Ok(_) => continue, //if other val re-does loop
-            Err(_) => continue, //sane for err
+            Err(_) => continue, //same for err
         };
     }
 }
@@ -20,7 +20,7 @@ fn main() {
 fn testing() {
     println!("Hello, world!");
     let i32num: i16 = -255; //creates new var as signed 16-bit int
-    let unsignedarch: usize = 4_000_000_000; //creates new unsigned architecture-max int //can use _'s as seperators
+    let unsignedarch: usize = 4_000_000_000; //creates new unsigned architecture-max int //can use _'s as separator
     let float8: f32 = 3.5; //creates new single-precision float
     let tru: bool = true; //creates new boolean with value true
     let aint = 5; //creates new int (compiler can often determine type at compile-time
