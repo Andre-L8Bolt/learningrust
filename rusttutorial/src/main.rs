@@ -1,4 +1,9 @@
 fn main() {
+    testing();
+    guessgame()
+}
+
+fn testing() {
     println!("Hello, world!");
     let i32num: i16 = -255; //creates new var as signed 16-bit int
     let unsignedarch: usize = 4_000_000_000; //creates new unsigned architecture-max int //can use _'s as seperators
