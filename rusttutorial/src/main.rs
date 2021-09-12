@@ -47,15 +47,20 @@ fn ownershipandstructstesting() {
 }
 
 fn guessgame() { //new function called guessgame (from the tutorial)
-    println!("\nGuess a number from 1-25 (inclusive):\n");
-    let num = rand::thread_rng().gen_range(1..26);
+    let num = rand::thread_rng().gen_range(1..=25);
     let mut tries = 0;
     loop {
+        println!("\nGuess a number from 1-25 (inclusive):\n");
         let mut guess = String::new();
         tries = tries + 1;
         io::stdin().read_line(&mut guess).expect("Failed to read input"); //same as in selection loop
-        let guess: u8 = match guess.trim().parse() { //shadows the var guess
-            Ok(num) => num,
+        let guess: i8 = match guess.trim().parse() { //shadows the var guess
+            Ok(num) => {
+                match num {
+                    1..=25 => num,
+                    _ => continue,
+                }
+            },
             Err(_) => continue,
         };
         match guess.cmp(&num) { //match statement like above
